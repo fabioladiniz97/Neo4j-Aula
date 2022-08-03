@@ -7,12 +7,13 @@ const driver = neo4j.driver(
 
 const session = driver.session();
 
-async function criarPessoa(){
-    await session.run('CREATE (:Pessoa{nome:"Teste"})').then(result=>{
+async function buscarAmigosDosAmigos(){
+    session.run('MATCH (:Pessoa{nome:"Fabiola"})-[*2]->(p2:Pessoa)RETURN p2.nome').then(result =>{
         console.log(result);
     });
-      
 }
-criarPessoa();
+        
+//criarPessoa();
 
+buscarAmigosDosAmigos();
 driver.close();
